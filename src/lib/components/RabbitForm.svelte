@@ -18,7 +18,7 @@
 	<label for="name">Name</label>
 	<input id="name" type="text" bind:value={name} class="input" />
 </div>
-<RabbitholeSelector rabbitholeId={(id) => (rabbitholeId = id)}></RabbitholeSelector>
+<RabbitholeSelector setId={(id) => (rabbitholeId = id)}></RabbitholeSelector>
 <button class="btn btn-primary" onclick={addRabbit} disabled={wrongRabbitName || name.length === 0}
 	>Add Rabbit!</button
 >
