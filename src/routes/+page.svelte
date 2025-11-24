@@ -27,7 +27,7 @@
 
 <div class="grid w-[200px] grid-cols-[32px_1fr_32px_32px] items-end">
 	<div>Nr.</div>
-	<div>Name!</div>
+	<div>Name</div>
 	<div></div>
 	<div></div>
 
