@@ -1,5 +1,5 @@
 <script>
-	import { serverAddress, store } from '$lib/store.svelte.js';
+	import { pb, store } from '$lib/store.svelte.js';
 
 	let name = $state('');
 	let rabbithole = $state(null);
@@ -8,14 +8,14 @@
 	let rabbitholes = $state([]);
 
 	async function addRabbit() {
-		await store.addRabbit(name);
+		await store.addRabbit(name, rabbithole);
 		name = '';
 		store.listRabbits();
 	}
 
-	$effect{async() => {
+	$effect(async () => {
 		rabbitholes = await pb.collection('rabbitholes').getFullList();
-	}};
+	});
 </script>
 
 <div>
@@ -26,12 +26,9 @@
 <div>
 	<label for="name">Hasenbau</label>
 	<select class="select" bind:value={rabbithole}>
-		<option disabled selected>Pick a theme</option>
-		<option value="light">light</option>
-		<option value="dark">dark</option>
-		<option value="cyberpunk">cyberpunk</option>
-		<option value="valentine">valentine</option>
-		<option value="halloween">halloween</option>
+		{#each rabbitholes as rabbithole (rabbithole.id)}
+			<option value={rabbithole.id}>{rabbithole.name}</option>
+		{/each}
 	</select>
 </div>
 
