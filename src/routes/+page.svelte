@@ -14,12 +14,6 @@
 		} else {
 		}
 	}
-
-	// unser "Konstruktor" (lifecycle hook) - läuft jedesmal, wenn die Seite bzw. die Komponente geladen wird:
-	$effect(() => {
-		store.listRabbits();
-		$inspect('🐰: ', store.rabbits);
-	});
 </script>
 
 <!-- unser Template / HTML-Teil der Seite bzw. der Komponente -->
@@ -93,4 +87,4 @@
 	</div>
 </dialog>
 
-<button class="btn btn-primary"><a href="/add">New Rabbit!</a></button>
+<a href="/add"><button class="btn btn-primary">New Rabbit!</button></a>
