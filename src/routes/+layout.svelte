@@ -1,9 +1,16 @@
 <script>
 	import '../app.css';
+	import { store } from '$lib/store.svelte';
 	import favicon from '$lib/assets/favicon.svg';
 
 	let { children } = $props();
 	let theme = $state('halloween');
+
+	// unser "Konstruktor" (lifecycle hook) - läuft jedesmal, wenn die Seite bzw. die Komponente geladen wird:
+	$effect(() => {
+		store.listRabbits();
+		$inspect('🐰: ', store.rabbits);
+	});
 </script>
 
 <svelte:head>
