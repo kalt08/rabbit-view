@@ -5,11 +5,12 @@
 	let { rabbitId = '' } = $props();
 	let rabbit = $state({
 		name: 'New Name',
-		rabbithole: ''
+		rabbithole: '',
+		race: ''
 	});
 	let rabbitholes = $state({});
 	let wrongRabbitName = $derived(rabbit.name.length > 0 && rabbit.name[0] !== 'J');
-
+	let races = $state({});
 	async function addRabbit() {
 		await store.addRabbit(rabbit);
 		goto('/');
@@ -19,8 +20,10 @@
 		await store.editRabbit(rabbitId, rabbit);
 		goto('/');
 	}
+
 	$effect(async () => {
 		rabbitholes = await pb.collection('rabbitholes').getFullList();
+		races = await pb.collection('races').getFullList();
 		if (rabbitId) {
 			rabbit = Object.assign(
 				{},
@@ -47,6 +50,17 @@
 			<select bind:value={rabbit.rabbithole}>
 				{#each rabbitholes as rabbithole (rabbithole.id)}
 					<option value={rabbithole.id}>{rabbithole.name}</option>
+				{/each}
+			</select>
+		</label>
+	</div>
+
+	<div>
+		<label class="select">
+			<span class="label">Race</span>
+			<select bind:value={rabbit.race}>
+				{#each races as race (race.id)}
+					<option value={race.id}>{race.name}</option>
 				{/each}
 			</select>
 		</label>
