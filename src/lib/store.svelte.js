@@ -9,7 +9,7 @@ export let store = $state({
 	rabbits: [],
 	listRabbits: async () => {
 		store.rabbits = await pb.collection('rabbits').getFullList({
-			expand: "rabbithole"
+			expand: "rabbithole, race"
 		});
 	},
 
